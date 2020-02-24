@@ -1,0 +1,47 @@
+
+
+<form class="generic-form" action="add_post.php" method="POST">
+
+    <!-- Utilisation d'un champ caché pour spécifier à quel article rattacher le commentaire -->
+  
+
+    <fieldset>
+        <legend><i class="fa fa-comment-o"></i>Nouvel article</legend>
+        <label for="Title"> Titre :</label>
+        <input type="text" name="Title" id="Title">
+        <label for="categorie">Catégorie :</label>
+        <select id="categorie ">
+            <?php foreach($Category as $category): ?>
+                <option value="<?= $category['Id'] ?>"><?= $category['Name'] ?></option>
+            <?php endforeach; ?>
+        </select>
+        <label for="Auteur ">Auteur :</label>
+        <select>
+            <?php foreach($Author as $author): ?>
+                <option value="<?= $author['Id'] ?>"><?= $author['LastName'] ?></option>
+            <?php endforeach; ?>
+        </select>
+        <ul>
+            <li>
+                <label for="Author_Id">Auteur :</label>
+                <input type="text" id="Author_Id" name="Author_Id">
+            </li>
+            <li>
+                <label for="Category_Id">Catégorie :</label>
+                <input type="text" id="Category_Id" name="Category_Id">
+            </li>
+            <li>
+                <label for="Image">Image :</label>
+                <input type="text" id="Image" name="Image">
+            </li>
+            <li>
+                <label class="textarea" for="Contents">Article :</label>
+                <textarea id="Contents" name="Contents" rows="5"></textarea>
+            </li>
+            <li>
+                <button class="button button-primary" type="submit">Ajouter</button>
+                <a class="button button-cancel" href="index.php">Annuler</a>
+            </li>
+        </ul>
+    </fieldset>
+</form>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+	<title></title>
+</head>
+<body>
+
+
+<a href="deconnexion.php">DECONNEXION</a>
+<br>
+<table id="example" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>Nom de l'auteur</th>
+				<th>Prénom</th>
+				<th>Photo</th>
+				<th>Titre</th>
+				<th>Contenu</th>
+				<th>Date de création</th>
+				<th>Image</th>
+				<th>Modifier</th>
+				<th>Supprimer</th>
+            </tr>
+        </thead>
+ 
+			
+	<tbody>
+		<?php foreach($Recap as $post): ?>
+		<tr>
+			<td><?= $post['FirstName'] ?></td>
+			<td><?= $post['LastName'] ?></td>
+			<td><img src="<?= $post['AuthorImage'] ?>" style="height: 50px"></td>
+			<td><?= $post['Title'] ?></td>
+			<td><?= $post['Contents'] ?></td>
+			<td><?= $post['CreationTimestamp'] ?></td>
+			<td><img src="<?= $post['Image'] ?>" style='height: 50px'></td>
+			<td><a href="modifpost.php?id=<?= $post['Id'] ?>" title="Consulter l'article">Modifier</a></td>
+			<td><a href="deletepost.php?id=<?= $post['Id'] ?>" onclick="return confirm('Etes vous sûr de vouloir supprimer cet article?')">Supprimer</a></td>
+		</tr>
+		<?php endforeach; ?>
+	</tbody>
+</table>
+
+
+<script type="text/javascript">
+	
+	$(document).ready(function() {
+    $('#example').DataTable();
+} );
+</script>
+
+</body>
+
+
+</html>
+
+
+

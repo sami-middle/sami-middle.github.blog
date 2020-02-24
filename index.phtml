@@ -1,0 +1,313 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<title>DBZ blog</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8">
+
+
+	<!-- Font -->
+
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+	<!-- Stylesheets -->
+	
+	<link href="common-css/bootstrap.css" rel="stylesheet">
+
+	<link href="common-css/ionicons.css" rel="stylesheet">
+
+
+	<link href="single-post-1/css/styles.css" rel="stylesheet">
+
+	<link href="layout-1/css/styles.css" rel="stylesheet">
+
+	<link href="layout-1/css/responsive.css" rel="stylesheet">
+
+	<link href="single-post-1/css/responsive.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/flexslider.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="js/jquery.flexslider-min.js"></script>
+	<script>
+		$(window).on('load', function() {
+			$('.flexslider').flexslider({
+				directionNav: true,
+				controlNav: true
+			});
+		});
+	</script>
+
+</head>
+<body >
+
+	<header>
+		<div class="">
+
+			<a href="#" class="logo"><img src="images/dbz.png" alt="Logo Image"></a>
+
+			<div class="menu-nav-icon" data-nav-menu="#main-menu"><i class="ion-navicon"></i></div>
+
+			<ul class="main-menu " id="main-menu">
+				<li><a href="index.php">Home</a></li>
+				<li class="survol"><a href="#">Categories</a>
+					<ul class="submenu">
+					<?php foreach($category as $cat): ?>
+						<li><a href="category.php?id=<?= $cat['Id'] ?>" class="liens-mm"><?= $cat['Name']?></a></li>
+					<?php endforeach; ?>
+								
+					</ul>
+				</li>
+				<!--<li class="survol" style="display: <?php if(!isset($_SESSION['login'])){?> none; <?php } ?>"><a href="recap.php">Features</a>
+					<ul class="submenu">					
+						<li class="liens-mm"><a href="add_post.php" class="liens-mm">Nouvel Article</a></li>
+						<li class="liens-mm"><a href="modifpost.php" class="liens-mm">Modifier un article</a></li>
+						<li class="liens-mm"><a href="deletepost.php" class="liens-mm"></a>Supprimer un article</li>			
+						<li class="liens-mm"><a href="recap.php" class="liens-mm">Tableau de bord</a></li>			
+					</ul>
+				</li>-->
+				<li style="display: <?php if(isset($_SESSION['login'])){?> none; <?php } ?>"><a href="login.php">Connexion</a></li>
+				<li style="display: <?php if(!isset($_SESSION['login'])){?> none; <?php } ?>"><a href="deconnexion-index.php">Déconnexion</a>
+				</li>
+				<li  class="bienvenue" style="display: <?php if(!isset($_SESSION['login'])){?> none; <?php } ?>;  color: green;" >Bienvenue <?= $_SESSION['login'] ?>
+				</li>	
+			</ul><!-- main-menu -->
+		
+			<div class="src-area">
+				<form>
+					<button class="src-btn" type="submit"><i class="ion-ios-search-strong"></i></button>
+					<input class="src-input" type="text" placeholder="Type of search">
+				</form>
+			</div>
+
+		</div><!-- conatiner -->
+	</header>
+
+	<div class="flexslider">
+			  <ul class="slides">
+			    <li>
+			      <img src="https://images2.alphacoders.com/564/thumb-1920-564835.jpg" />
+			    </li>
+			    <li>
+			      <img src="http://eskipaper.com/images/dragon-ball-z-wallpaper-9.jpg" />
+			    </li>
+			    <li>
+			      <img src="https://wallpapermemory.com/uploads/610/dragon-ball-z-dbz-wallpaper-full-hd-1920x1080-462356.jpg" />
+			    </li>
+			  </ul>
+	</div>	
+	<?php foreach($posts as $post): ?>
+	<section class="post-area section">
+		<div class="container">
+
+			<div class="row">
+
+				<div class="col-lg-8 col-md-12 no-right-padding">
+
+					<div class="main-post">
+
+						<div class="blog-post-inner">
+
+							<div class="post-info">
+									
+								<div class="left-area">
+									<a class="avatar" href="#"><img src="<?= $post['AuthorImage']?>" alt="Profile Image"></a>
+								</div>
+
+								<div class="middle-area">
+									<a class="name" href="#"><b><?= $post['FirstName']?> <?= $post['LastName'] ?></b></a>
+									<h6 class="date"><?= $post['CreationTimestamp'] ?></h6>
+								</div>
+								
+							</div><!-- post-info -->
+								
+							<h3 class="title"><a href="single-post-2.php?id=<?= $post['Id'] ?>"><b><?= $post['Title']?></b></a></h3>
+
+							<p class="para">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+
+							<div class="post-image"><img src="<?= $post['Image'] ?>" alt="Blog Image"></div>
+
+							<p class="para">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+							dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+							ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+							nulla pariatur. Excepteur sint
+							occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+
+				<ul class="posticons" style="display: <?php if(!isset($_SESSION['login'])){?> none; <?php } ?>">
+					<li><a href="add_post.php"><i class="far fa-plus-square"></i></a></li>
+					<li><a href="modifpost.php?id=<?= $post['Id'] ?>"><i class="far fa-edit"></i></a></li>
+					<li><a href="deletepost.php?id=<?= $post['Id'] ?>" onclick="return confirm('Etes vous sûr de vouloir supprimer cet article?')"><i class="far fa-trash-alt"></i></a></li>
+					<li><a href="recap.php"><i class="fas fa-folder-open"></i></a></li>
+				</ul>
+
+					</div><!-- main-post -->
+				</div><!-- col-lg-8 col-md-12 -->
+				
+
+				<div class="col-lg-4 col-md-12 no-left-padding">
+
+					<div class="single-post info-area">
+
+						
+
+						
+						</div><!-- subscribe-area -->
+
+					</div><!-- info-area -->
+
+				</div><!-- col-lg-4 col-md-12 -->
+
+			</div><!-- row -->
+
+		</div><!-- container -->
+	</section><!-- post-area -->
+	<?php endforeach; ?>
+
+	<section class="recomended-area section">
+		<div class="container">
+			<div class="row">
+
+				<div class="col-lg-4 col-md-6">
+					<div class="card h-100">
+						<div class="single-post post-style-1">
+
+							<div class="blog-image"><img src="images/alex-lambley-205711.jpg" alt="Blog Image"></div>
+
+							<a class="avatar" href="#"><img src="images/icons8-team-355979.jpg" alt="Profile Image"></a>
+
+							<div class="blog-info">
+
+								<h4 class="title"><a href="#"><b>How Did Van Gogh's Turbulent Mind Depict One of the Most Complex
+								Concepts in Physics?</b></a></h4>
+
+								<ul class="post-footer">
+									<li><a href="#"><i class="ion-heart"></i>57</a></li>
+									<li><a href="#"><i class="ion-chatbubble"></i>6</a></li>
+									<li><a href="#"><i class="ion-eye"></i>138</a></li>
+								</ul>
+
+							</div><!-- blog-info -->
+						</div><!-- single-post -->
+					</div><!-- card -->
+				</div><!-- col-md-6 col-sm-12 -->
+
+				<div class="col-lg-4 col-md-6">
+					<div class="card h-100">
+						<div class="single-post post-style-1">
+
+							<div class="blog-image"><img src="images/caroline-veronez-165944.jpg" alt="Blog Image"></div>
+
+							<a class="avatar" href="#"><img src="<?= $post['AuthorImage'] ?>" alt="Profile Image"></a>
+
+							<div class="blog-info">
+								<h4 class="title"><a href="#"><b>How Did Van Gogh's Turbulent Mind Depict One of the Most Complex
+									Concepts in Physics?</b></a></h4>
+
+								<ul class="post-footer">
+									<li><a href="#"><i class="ion-heart"></i>57</a></li>
+									<li><a href="#"><i class="ion-chatbubble"></i>6</a></li>
+									<li><a href="#"><i class="ion-eye"></i>138</a></li>
+								</ul>
+							</div><!-- blog-info -->
+
+						</div><!-- single-post -->
+
+					</div><!-- card -->
+				</div><!-- col-md-6 col-sm-12 -->
+
+				<div class="col-lg-4 col-md-6">
+					<div class="card h-100">
+						<div class="single-post post-style-1">
+
+							<div class="blog-image"><img src="images/marion-michele-330691.jpg" alt="Blog Image"></div>
+
+							<a class="avatar" href="#"><img src="images/icons8-team-355979.jpg" alt="Profile Image"></a>
+
+							<div class="blog-info">
+								<h4 class="title"><a href="#"><b>How Did Van Gogh's Turbulent Mind Depict One of the Most Complex
+									Concepts in Physics?</b></a></h4>
+
+								<ul class="post-footer">
+									<li><a href="#"><i class="ion-heart"></i>57</a></li>
+									<li><a href="#"><i class="ion-chatbubble"></i>6</a></li>
+									<li><a href="#"><i class="ion-eye"></i>138</a></li>
+								</ul>
+							</div><!-- blog-info -->
+
+						</div><!-- single-post -->
+
+					</div><!-- card -->
+				</div><!-- col-md-6 col-sm-12 -->
+
+			</div><!-- row -->
+
+		</div><!-- container -->
+	</section>
+
+	
+
+	<footer>
+
+		<div class="container">
+			<div class="row">
+
+				<div class="col-lg-4 col-md-6">
+					<div class="footer-section">
+
+						<a class="logo" href="#"><img src="images/logo.png" alt="Logo Image"></a>
+						<p class="copyright">Bona @ 2017. All rights reserved.</p>
+						<p class="copyright">Designed by <a href="https://colorlib.com" target="_blank">Colorlib</a></p>
+						<ul class="icons">
+							<li><a href="#"><i class="ion-social-facebook-outline"></i></a></li>
+							<li><a href="#"><i class="ion-social-twitter-outline"></i></a></li>
+							<li><a href="#"><i class="ion-social-instagram-outline"></i></a></li>
+							<li><a href="#"><i class="ion-social-vimeo-outline"></i></a></li>
+							<li><a href="#"><i class="ion-social-pinterest-outline"></i></a></li>
+						</ul>
+
+					</div><!-- footer-section -->
+				</div><!-- col-lg-4 col-md-6 -->
+
+				<div class="col-lg-4 col-md-6">
+						<div class="footer-section">
+						<h4 class="title"><b>CATAGORIES</b></h4>
+						<ul>
+							<?php foreach($category as $cat): ?>
+							<li><a href="category.php?id=<?= $cat['Id'] ?>" class="liens-mm"><?= $cat['Name']?></a></li>
+							<?php endforeach; ?>
+						</ul>
+						</div><!-- footer-section -->
+				</div><!-- col-lg-4 col-md-6 -->
+
+				<div class="col-lg-4 col-md-6">
+					<div class="footer-section">
+
+						<h4 class="title"><b>SUBSCRIBE</b></h4>
+						<div class="input-area">
+							<form>
+								<input class="email-input" type="text" placeholder="Enter your email">
+								<button class="submit-btn" type="submit"><i class="icon ion-ios-email-outline"></i></button>
+							</form>
+						</div>
+
+					</div><!-- footer-section -->
+				</div><!-- col-lg-4 col-md-6 -->
+
+			</div><!-- row -->
+		</div><!-- container -->
+	</footer>
+
+
+	<!-- SCIPTS -->
+
+	
+
+	<script src="common-js/tether.min.js"></script>
+
+	<script src="common-js/bootstrap.js"></script>
+
+	<script src="common-js/scripts.js"></script>
+	
+	
+</body>
+</html>

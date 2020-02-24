@@ -1,0 +1,61 @@
+
+
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+ <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+ <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+ <!-- include summernote css/js -->
+ <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.css" rel="stylesheet">
+ <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.js"></script>
+
+
+
+
+
+
+<form class="generic-form" action="add_post.php" method="post">
+
+    <!-- Utilisation d'un champ caché pour spécifier à quel article rattacher le commentaire -->
+  
+
+    <fieldset>
+    <input type="hidden" name="Id" value="">
+
+        <legend><i class="fa fa-comment-o"></i>Créez votre Article</legend>
+        <label for="Title"> Titre :</label>
+        
+        <input type="text" name="Title" id="Title" value="">
+
+        <label for="categorie">Catégorie :</label>
+        <select id="categorie " name="Category_Id">
+            <?php foreach($Category as $category): ?>
+                <option value="<?= $category['Id'] ?>"><?= $category['Name'] ?></option>
+            <?php endforeach; ?>
+        </select>
+        <label for="Auteur ">Auteur :</label>
+        <select name="Author_Id"> 
+            <?php foreach($Author as $author): ?>
+                <option value="<?= $author['Id'] ?>"><?= $author['FirstName'] ?>  <?= $author['LastName'] ?></option>
+            <?php endforeach; ?>
+        </select>
+        <ul>
+           
+            <li>
+                <label for="Image">Image :</label>
+                <input type="text" id="Image" value="" name="Image">
+            </li>
+            <li>
+                <label class="textarea" for="Contents">Article :</label>
+                <textarea id="summernote" name="Contents" ></textarea>
+            </li>
+            <li>
+                <button class="button button-primary" type="submit">Envoyer</button>
+                <a class="button button-cancel" href="recap.php">Annuler</a>
+            </li>
+        </ul>
+    </fieldset>
+</form>
+<script>
+   $(document).ready(function() {
+       $('#summernote').summernote();
+   });
+ </script>
